@@ -5,9 +5,16 @@ const Result = ({ emojis, query }) => {
   const [results, setResults] = useState([])
 
   useEffect(() => {
-    let regex = new RegExp(query, 'gi')
-    let filteredArray = emojis.filter(e => regex.test(e.unicodeName))
-    setResults(filteredArray)
+    if (query) {
+      let regex = new RegExp(query, 'gi')
+      if ((query[0] >= 'a' && query[0] <= 'z') || (query[0] >= 'A' && query[0] <= 'Z')) {
+        let filteredArray = emojis.filter(e => regex.test(e.unicodeName))
+        setResults(filteredArray)
+      } else {
+        let filteredArray = [].concat(emojis.find(e => regex.test(e.character)))
+        setResults(filteredArray)
+      }
+    }
   }, [query, emojis])
 
 
@@ -16,7 +23,7 @@ const Result = ({ emojis, query }) => {
       ? (
         <>
           <p>{results.length} results found.</p>
-          <div>
+          <div className="container__result">
             {results.map(r => (
               <ResultCard
                 key={r.codePoint}

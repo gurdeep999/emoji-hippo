@@ -61,7 +61,7 @@ const hsvToRgb = (h, s, v) => {
 //assigns rgb values to css var dynamically
 
 const themeColor = `rgb(${hsvToRgb(0, 0.7, 0.95)})`
-console.log(themeColor)
+console.log(`themeColor: ${themeColor}`)
 document.documentElement.style.cssText =
   `--theme-color: ${themeColor} ;`;
 

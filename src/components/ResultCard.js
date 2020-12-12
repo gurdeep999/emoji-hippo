@@ -4,8 +4,8 @@ const ResultCard = ({ result }) => {
   return (
     <div className="result-card">
       <div className="result-character">{result.character}</div>
-      <div>{result.unicodeName}</div>
-      <div>{result.codePoint}</div>
+      <div className="result-name">{result.unicodeName}</div>
+      <div className="result-code">{result.codePoint}</div>
     </div>
   )
 }
