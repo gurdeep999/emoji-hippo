@@ -48,7 +48,7 @@ body {
 .search__label {
   position: relative;
   color: white;
-  width: 300px;
+  width: 250px;
   margin: 0 1rem;
   border-bottom: 2px solid var(--theme-color);
   height: 40px;
@@ -86,7 +86,7 @@ body {
 .explore__emoji-list {
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(10, 50px);
+  grid-template-columns: repeat(14, 50px);
 }
 
 @media screen and (max-width: 750px) {
