@@ -40,15 +40,17 @@ body {
 .search {
   color: var(--theme-color);
   display: flex;
+  flex-wrap: wrap;
   flex: 1 1 0%;
   align-items: center;
+  justify-content: center;
   margin: 1rem 0 2rem 0;
 }
 
 .search__label {
   position: relative;
   color: white;
-  width: 250px;
+  width: 300px;
   margin: 0 1rem;
   border-bottom: 2px solid var(--theme-color);
   height: 40px;
@@ -89,11 +91,30 @@ body {
   grid-template-columns: repeat(14, 50px);
 }
 
+@media screen and (max-width: 950px) {
+  .explore__emoji-list {
+    grid-template-columns: repeat(12, 50px);
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .explore__emoji-list {
+    grid-template-columns: repeat(10, 50px);
+  }
+}
+
 @media screen and (max-width: 750px) {
   .explore__emoji-list {
     grid-template-columns: repeat(8, 50px);
   }
 }
+
+@media screen and (max-width: 650px) {
+ .search__label {
+   width: 220px;
+ }
+}
+
 
 @media screen and (max-width: 600px) {
   .explore__emoji-list {
