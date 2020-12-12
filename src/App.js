@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import Explore  from './components/Explore'
+import Explore from './components/Explore'
 import Result from './components/Result'
 import Search from './components/Search'
 
 const App = () => {
   const [emojis, setEmojis] = useState([])
-  const [query,setQuery] = useState('')
-  const [results,setResults] = useState([])
-  
+  const [query, setQuery] = useState('')
+
 
   const fetchEmoji = async () => {
     let emojiDataJSON = window.localStorage.getItem('emojiData')
@@ -22,34 +21,45 @@ const App = () => {
   }
 
   useEffect(() => {
-      fetchEmoji().then(data => setEmojis(data))
+    fetchEmoji().then(data => setEmojis(data))
   }, [])
 
-  
+
 
   const handleQueryChange = (e) => {
     setQuery(e.target.value)
-    handleResults(query)
+
   }
 
-  const handleResults = (query) => {
-    let regex = new RegExp(query,'gi')
-    let filteredArray = emojis.filter(e=>regex.test(e.unicodeName))
-    setResults(filteredArray)
-  }
 
   return (
-    <div>
-      <div>Header</div>
-      <Search
-      query={query}
-      handleChange={handleQueryChange}/>
-      <Result 
-      results={results}
-      query={query}/>
-      <Explore 
-      emojis={emojis}/>
-      <div>footer</div>
+    <div className="container">
+      <nav className="nav">
+        <h2 className="nav__brand">emoji<span className="nav__brand--mod">Hippo</span></h2>
+        <div className="nav__links">
+          <div className="nav__links-item">HOME</div>
+          <div className="nav__links-item">GITHUB</div>
+        </div>
+      </nav>
+      <div className="container__main">
+        <Search
+          query={query}
+          handleChange={handleQueryChange} />
+        <div className="main__content">
+          <Result
+            query={query}
+            emojis={emojis} />
+          {query
+            ? ''
+            : (
+              <Explore
+                emojis={emojis} />
+            )
+          }
+        </div>
+      </div>
+
+      <div className="container__footer"><div>Made with ❤️ by <a href="https://gurdeepsingh.netlify.app/">gurdeepsingh</a></div></div>
     </div >
   )
 }
