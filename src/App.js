@@ -48,7 +48,7 @@ const App = () => {
         <h2
           className="nav__brand"
           onClick={handleRedirect}>
-          emoji
+          Emoji
             <span className="nav__brand--mod">
             Hippo
               </span>
