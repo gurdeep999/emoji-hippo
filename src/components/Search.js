@@ -9,15 +9,37 @@ const Search = ({ query, handleChange }) => {
       <label className="search__label">
         <span>
         {!query
-          ? <Typewriter
-            options={{
-              strings: ['enter','emoji','or','text'],
-              autoStart: true,
-              loop: true,
-              delay: 'natural',
-              deleteSpeed: 'natural',
-              pauseFor: 500
-            }} />
+          // ? <Typewriter
+          //   options={{
+          //     strings: ['enter','emoji','or','text'],
+          //     autoStart: true,
+          //     loop: true,
+          //     delay: 'natural',
+          //     deleteSpeed: 'natural',
+          //     pauseFor: 500
+          //   }} />
+          ? <Typewriter 
+          options={{
+                autoStart: true,
+                loop: true,
+                delay: 'natural',
+                deleteSpeed: 'natural'
+              }}
+          onInit={(typewriter) => {
+            typewriter.typeString('enter')
+            .pauseFor(300)
+            .deleteAll()
+            .typeString('emoji <span>&#x1F60E;</span>')
+            .pauseFor(300)
+            .deleteAll()
+            .typeString('or')
+            .pauseFor(300)
+            .deleteAll()
+            .typeString('text')
+            .pauseFor(300)
+            .start()
+          }}
+          />
           : null}
         </span>
         <input

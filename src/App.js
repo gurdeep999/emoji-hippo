@@ -7,7 +7,7 @@ import Search from './components/Search'
 const App = () => {
   const [emojis, setEmojis] = useState([])
   const [query, setQuery] = useState('')
-  const [detail, setDetail] = useState()
+  const [detail, setDetail] = useState('')
 
   const fetchEmoji = async () => {
     let emojiDataJSON = window.localStorage.getItem('emojiData')
@@ -29,6 +29,7 @@ const App = () => {
 
   const handleQueryChange = (e) => {
     setQuery(e.target.value)
+    setDetail('')
 
   }
 
@@ -36,27 +37,36 @@ const App = () => {
     setDetail(e)
   }
 
-  const mainContent = () => {
-
+  const handleRedirect = () => {
+    setQuery('')
+    setDetail('')
   }
-
 
   return (
     <div className="container">
       <nav className="nav">
-        <h2 className="nav__brand">emoji<span className="nav__brand--mod">Hippo</span></h2>
+        <h2
+          className="nav__brand"
+          onClick={handleRedirect}>
+          emoji
+            <span className="nav__brand--mod">
+            Hippo
+              </span>
+        </h2>
         <div className="nav__links">
-          <div className="nav__links-item">
-            <a 
-            className="nav__links-item--nostyle"
-            href="/">HOME</a>
+          <div
+            className="nav__links-item"
+            onClick={handleRedirect}>
+            <div
+              className="nav__links-item--nostyle"
+            >HOME</div>
           </div>
           <div className="nav__links-item">
-            <a 
-            className="nav__links-item--nostyle"
-            href="https://github.com/gurdeepsinghsaini/emoji-hippo" 
-            rel="noreferrer" 
-            arget="_blank">GITHUB</a>
+            <a
+              className="nav__links-item--nostyle"
+              href="https://github.com/gurdeepsinghsaini/emoji-hippo"
+              rel="noreferrer"
+              arget="_blank">GITHUB</a>
           </div>
         </div>
       </nav>
