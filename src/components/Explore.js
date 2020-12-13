@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import utils from '../utils/utilities'
 
-const Explore = ({ emojis }) => {
+const Explore = ({ emojis, handleDetails }) => {
   const [counter, setCounter] = useState(50)
   const [shuffledEmoji, setShuffledEmoji] = useState([])
 
@@ -32,7 +32,8 @@ const Explore = ({ emojis }) => {
               <span
                 className="emoji-list__item"
                 key={emoji.id + codePoint}
-                aria-label={emoji.unicodeName}>
+                aria-label={emoji.unicodeName}
+                onClick={() => handleDetails(emoji)}>
                 {emoji.character}
               </span>
             )

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import EmojiDetailPage from './components/EmojiDetailPage'
 import Explore from './components/Explore'
 import Result from './components/Result'
 import Search from './components/Search'
@@ -6,7 +7,7 @@ import Search from './components/Search'
 const App = () => {
   const [emojis, setEmojis] = useState([])
   const [query, setQuery] = useState('')
-
+  const [detail, setDetail] = useState()
 
   const fetchEmoji = async () => {
     let emojiDataJSON = window.localStorage.getItem('emojiData')
@@ -31,14 +32,32 @@ const App = () => {
 
   }
 
+  const handleDetails = (e) => {
+    setDetail(e)
+  }
+
+  const mainContent = () => {
+
+  }
+
 
   return (
     <div className="container">
       <nav className="nav">
         <h2 className="nav__brand">emoji<span className="nav__brand--mod">Hippo</span></h2>
         <div className="nav__links">
-          <div className="nav__links-item">HOME</div>
-          <div className="nav__links-item">GITHUB</div>
+          <div className="nav__links-item">
+            <a 
+            className="nav__links-item--nostyle"
+            href="/">HOME</a>
+          </div>
+          <div className="nav__links-item">
+            <a 
+            className="nav__links-item--nostyle"
+            href="https://github.com/gurdeepsinghsaini/emoji-hippo" 
+            rel="noreferrer" 
+            arget="_blank">GITHUB</a>
+          </div>
         </div>
       </nav>
       <div className="container__main">
@@ -46,15 +65,21 @@ const App = () => {
           query={query}
           handleChange={handleQueryChange} />
         <div className="main__content">
-          <Result
-            query={query}
-            emojis={emojis} />
-          {query
-            ? ''
-            : (
-              <Explore
-                emojis={emojis} />
-            )
+          {detail
+            ? <EmojiDetailPage
+              detail={detail} />
+            : query
+              ? (
+                <Result
+                  query={query}
+                  emojis={emojis}
+                  handleDetails={handleDetails} />
+              )
+              : (
+                <Explore
+                  emojis={emojis}
+                  handleDetails={handleDetails} />
+              )
           }
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ResultCard from './ResultCard'
 
-const Result = ({ emojis, query }) => {
+const Result = ({ emojis, query, handleDetails }) => {
   const [results, setResults] = useState([])
 
   useEffect(() => {
@@ -12,7 +12,9 @@ const Result = ({ emojis, query }) => {
         setResults(filteredArray)
       } else {
         let filteredArray = [].concat(emojis.find(e => regex.test(e.character)))
-        setResults(filteredArray)
+        if (filteredArray[0]) {
+          setResults(filteredArray)
+        }
       }
     }
   }, [query, emojis])
@@ -28,6 +30,7 @@ const Result = ({ emojis, query }) => {
               <ResultCard
                 key={r.codePoint}
                 result={r}
+                handleDetails={handleDetails}
               />
             ))}
           </div>
