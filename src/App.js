@@ -9,14 +9,14 @@ const App = () => {
   const [query, setQuery] = useState('')
   const [detail, setDetail] = useState('')
 
-  console.log(process.env.FIREBASE_URI)
+  console.log(process.env.REACT_FIREBASE_URI)
 
   const fetchEmoji = async () => {
     let emojiDataJSON = window.localStorage.getItem('emojiData')
     if (emojiDataJSON) {
       return JSON.parse(emojiDataJSON)
     } else {
-      let response = await fetch(process.env.REACT_FIREBASE_URI)
+      let response = await fetch(`${process.env.REACT_FIREBASE_URI}`)
       let data = await response.json()
       window.localStorage.setItem('emojiData', JSON.stringify(data))
       return data
