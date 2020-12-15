@@ -13,7 +13,7 @@ const App = () => {
 
 
   const fetchEmoji = async () => {
-    const uri = process.env.React_APP_FIREBASE_URI
+    const uri = process.env.REACT_APP_FIREBASE_URI
     let emojiDataJSON = window.localStorage.getItem('emojiData')
     if (emojiDataJSON) {
       return JSON.parse(emojiDataJSON)
