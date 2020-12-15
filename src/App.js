@@ -14,7 +14,7 @@ const App = () => {
     if (emojiDataJSON) {
       return JSON.parse(emojiDataJSON)
     } else {
-      let response = await fetch('process.env.FIREBASE_URI')
+      let response = await fetch(`${process.env.FIREBASE_URI}`)
       let data = await response.json()
       window.localStorage.setItem('emojiData', JSON.stringify(data))
       return data
