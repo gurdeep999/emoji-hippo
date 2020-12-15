@@ -3,15 +3,17 @@ import EmojiDetailPage from './components/EmojiDetailPage'
 import Explore from './components/Explore'
 import Result from './components/Result'
 import Search from './components/Search'
-const uri = process.env.React_APP_FIREBASE_URI
+
 
 const App = () => {
   const [emojis, setEmojis] = useState([])
   const [query, setQuery] = useState('')
   const [detail, setDetail] = useState('')
-  
+
+
 
   const fetchEmoji = async () => {
+    const uri = process.env.React_APP_FIREBASE_URI
     let emojiDataJSON = window.localStorage.getItem('emojiData')
     if (emojiDataJSON) {
       return JSON.parse(emojiDataJSON)
