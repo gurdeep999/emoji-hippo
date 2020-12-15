@@ -8,13 +8,14 @@ const App = () => {
   const [emojis, setEmojis] = useState([])
   const [query, setQuery] = useState('')
   const [detail, setDetail] = useState('')
+  const uri = process.env.React_APP_FIREBASE_URI
 
   const fetchEmoji = async () => {
     let emojiDataJSON = window.localStorage.getItem('emojiData')
     if (emojiDataJSON) {
       return JSON.parse(emojiDataJSON)
     } else {
-      let response = await fetch('https://radiant-precept-290311-default-rtdb.firebaseio.com/api/emojis.json')
+      let response = await fetch(`${uri}`)
       let data = await response.json()
       window.localStorage.setItem('emojiData', JSON.stringify(data))
       return data
