@@ -22,7 +22,7 @@ const App = () => {
         console.log(data)
         window.localStorage.setItem('emojiData', JSON.stringify(data))
         return data
-      // }
+      }
     } catch(err){
       console.log(err.body)
     }
