@@ -13,14 +13,14 @@ const App = () => {
 
   const fetchEmoji = async () => {
     try {
-      // let emojiDataJSON = window.localStorage.getItem('emojiData')
-      // if (emojiDataJSON) {
-      //   return JSON.parse(emojiDataJSON)
-      // } else {
+      let emojiDataJSON = window.localStorage.getItem('emojiData')
+      if (emojiDataJSON) {
+        return JSON.parse(emojiDataJSON)
+      } else {
         let response = await fetch("/.netlify/functions/getemojis")
         let data = await response.json()
         console.log(data)
-        // window.localStorage.setItem('emojiData', JSON.stringify(data))
+        window.localStorage.setItem('emojiData', JSON.stringify(data))
         return data
       // }
     } catch(err){
