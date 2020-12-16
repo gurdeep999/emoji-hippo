@@ -24,3 +24,5 @@ yarn-error.log*
 
 .eslintcache
 netlify.toml
+# Local Netlify folder
+.netlify
