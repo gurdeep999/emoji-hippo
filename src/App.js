@@ -11,17 +11,20 @@ const App = () => {
   const [detail, setDetail] = useState('')
 
 
-
   const fetchEmoji = async () => {
-    const uri = process.env.REACT_APP_FIREBASE_URI
-    let emojiDataJSON = window.localStorage.getItem('emojiData')
-    if (emojiDataJSON) {
-      return JSON.parse(emojiDataJSON)
-    } else {
-      let response = await fetch(`${uri}`)
-      let data = await response.json()
-      window.localStorage.setItem('emojiData', JSON.stringify(data))
-      return data
+    try {
+      let emojiDataJSON = window.localStorage.getItem('emojiData')
+      if (emojiDataJSON) {
+        return JSON.parse(emojiDataJSON)
+      } else {
+        let response = await fetch("/.netlify/functions/getemojis")
+        let data = await response.json()
+        console.log(data)
+        window.localStorage.setItem('emojiData', JSON.stringify(data))
+        return data
+      }
+    } catch(err){
+      console.log(err.body)
     }
   }
 
