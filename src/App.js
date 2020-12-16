@@ -4,20 +4,27 @@ import Explore from './components/Explore'
 import Result from './components/Result'
 import Search from './components/Search'
 
+
 const App = () => {
   const [emojis, setEmojis] = useState([])
   const [query, setQuery] = useState('')
   const [detail, setDetail] = useState('')
 
+
   const fetchEmoji = async () => {
-    let emojiDataJSON = window.localStorage.getItem('emojiData')
-    if (emojiDataJSON) {
-      return JSON.parse(emojiDataJSON)
-    } else {
-      let response = await fetch('https://radiant-precept-290311-default-rtdb.firebaseio.com/api/emojis.json')
-      let data = await response.json()
-      window.localStorage.setItem('emojiData', JSON.stringify(data))
-      return data
+    try {
+      let emojiDataJSON = window.localStorage.getItem('emojiData')
+      if (emojiDataJSON) {
+        return JSON.parse(emojiDataJSON)
+      } else {
+        let response = await fetch("/.netlify/functions/getemojis")
+        let data = await response.json()
+        console.log(data)
+        window.localStorage.setItem('emojiData', JSON.stringify(data))
+        return data
+      }
+    } catch(err){
+      console.log(err.body)
     }
   }
 
