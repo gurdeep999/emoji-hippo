@@ -17,9 +17,8 @@ const App = () => {
       if (emojiDataJSON) {
         return JSON.parse(emojiDataJSON)
       } else {
-      let response = await fetch("https://radiant-precept-290311-default-rtdb.firebaseio.com/api/emojis.json")
+      let response = await fetch("/.netlify/functions/getemojis")
       let data = await response.json()
-      console.log(data)
       window.localStorage.setItem('emojiData', JSON.stringify(data))
       return data
       }
