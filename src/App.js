@@ -84,8 +84,8 @@ const App = () => {
         <Search
           query={query}
           handleChange={handleQueryChange} />
-        <div class="loader-wrapper">
-          <div class="loader">Loading...</div>
+        <div className="loader-wrapper">
+          <div className="loader">Loading...</div>
         </div>
         <div className="main__content">
 
